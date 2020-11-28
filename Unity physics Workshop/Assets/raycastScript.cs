@@ -64,17 +64,22 @@ public class raycastScript : MonoBehaviour
 
 
             for (int i = 0; i < destroyedObjectList.Count; i++)
-            {
-                 
-                GameObject InstantiatedObject = Instantiate<GameObject>(destroyedObjectList[i], Rayorigin.transform.forward * 5, 
-                                                Quaternion.identity);
-            InstantiatedObject.name = "NewObject" + i.ToString();
-
+            {  
+                                 
+                GameObject InstantiatedObject = Instantiate(destroyedObjectList[i], destroyedObjectList[i].transform.position,
+                                                transform.rotation);
                 InstantiatedObject.SetActive(true);
+
+                Vector3 ClonePosition = Rayorigin.transform.forward * 5;
+                InstantiatedObject.transform.position = ClonePosition;
+
+                InstantiatedObject.name = "NewObject" + i.ToString();
+
+                
                 Destroy(destroyedObjectList[i]);
                 destroyedObjectList.Remove(destroyedObjectList[i]);
 
-               // break;
+                break;
                  
             }
        
